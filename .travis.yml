@@ -15,9 +15,9 @@ after_success:
   - docker build -t amir/multi-nginx ./nginx
   - docker build -t amir/multi-server ./server
   - docker build -t amir/multi-worker ./worker
-  # Log in to the docker CLI
+  # Connexion dockerhub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
+  # Pousser nos images sur dockerhub
   - docker push amir/multi-client
   - docker push amir/multi-nginx
   - docker push amir/multi-server
