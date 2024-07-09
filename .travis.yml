@@ -5,20 +5,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t amir/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t amir1203/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true amir/react-test npm test
+  - docker run -e CI=true amir1203/react-test npm test
 
 after_success:
-  - docker build -t amir/multi-client ./client
-  - docker build -t amir/multi-nginx ./nginx
-  - docker build -t amir/multi-server ./server
-  - docker build -t amir/multi-worker ./worker
+  - docker build -t amir1203/multi-client:latest ./client
+  - docker build -t amir1203/multi-nginx:latest ./nginx
+  - docker build -t amir1203/multi-server:latest ./server
+  - docker build -t amir1203/multi-worker:latest ./worker
   # Connexion dockerhub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Pousser nos images sur dockerhub
-  - docker push amir/multi-client
-  - docker push amir/multi-nginx
-  - docker push amir/multi-server
-  - docker push amir/multi-worker
+  - docker push amir1203/multi-client:latest
+  - docker push amir1203/multi-nginx:latest
+  - docker push amir1203/multi-server:latest
+  - docker push amir1203/multi-worker:latest
+  
